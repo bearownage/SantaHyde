@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Adam's Scene.unity
+    guid: 89a06c323313b1b4087be527b972f566
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: d50069c3a6d7ba24891458c895854296
   m_configObjects: {}

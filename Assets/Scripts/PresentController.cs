@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PresentController : MonoBehaviour
 {
-
+    public static int PresentsCollected = 0;
     // public GameObject present;
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class PresentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Present Controller");
+        //Debug.Log("Present Controller");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,6 +24,8 @@ public class PresentController : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             gameObject.SetActive(false);
+            PresentsCollected++;
+
         }
         else
         {
@@ -31,6 +33,7 @@ public class PresentController : MonoBehaviour
         }
     }
 
+    /*
     void OnTriggerEnter(Collider collision)
     {
         Debug.Log("Collision Happening");
@@ -43,4 +46,5 @@ public class PresentController : MonoBehaviour
             Debug.Log("Nothing happened");
         }
     }
+    */
 }
