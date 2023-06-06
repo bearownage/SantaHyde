@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ExitController : MonoBehaviour
 {
-
+    public GameObject warningMessage;
     [SerializeField] private List<Scene> _sceneList;
     // Start is called before the first frame update
     void Start()
     {
-        
+        warningMessage.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,8 +33,16 @@ public class ExitController : MonoBehaviour
             {
                 SceneManager.LoadScene("Scenes/WinScene");
                 //_Win
+            } else
+            {
+                warningMessage.SetActive(true);
             }
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        warningMessage.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
