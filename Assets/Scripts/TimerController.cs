@@ -41,5 +41,9 @@ public class TimerController : MonoBehaviour
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
+        if ( timeToDisplay < 10 )
+        {
+            timeText.color = Color.red;
+        }
     }
 }
