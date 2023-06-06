@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TimerController : MonoBehaviour
 {
 
     public float timeValue = 90;
-    public TextMesh timeText;
+    public TextMeshProUGUI timeText;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,8 @@ public class TimerController : MonoBehaviour
         {
             timeValue = 0;
         }
+
+        DisplayTime(timeValue);
     }
 
     void DisplayTime(float timeToDisplay)
@@ -36,7 +39,7 @@ public class TimerController : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timeText.text = string.Format("{0:00}:{1:00}:", minutes, seconds);
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
     }
 }
