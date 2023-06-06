@@ -20,11 +20,20 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == targets[current])
+        {
+            transform.Rotate(0, 180, 0);
+            current = (current + 1) % targets.Length;
+        }
+    }
+
+ /*   private void OnCollisionEnter(Collision collision)
     {
         if ( collision.gameObject == targets[current] )
         {
             current = (current + 1) % targets.Length;
         }
-    }
+    }*/
 }

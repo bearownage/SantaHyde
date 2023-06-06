@@ -11,6 +11,8 @@ public class PresentDestinationController : MonoBehaviour
     public GameObject caffeineCookies;
 
     private bool hasChosenAPresent = false;
+    public static bool choseSugarCookies = false;
+    public static bool choseCaffeineCookies = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class PresentDestinationController : MonoBehaviour
             {
                 Debug.Log("User pressed 1");
                 hasChosenAPresent = true;
+                choseSugarCookies = true;
                 caffeineCookies.SetActive(true);
             }
             else if (Input.GetKeyDown("2"))
