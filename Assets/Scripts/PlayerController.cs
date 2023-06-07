@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float forwardInput;
 
+    public GameObject presentCollectedMessage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,5 +27,25 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
         // Rotates the car based on horizontal input
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "PresentCube")
+        {
+            StartCoroutine(DisplayPresentCollectedMessage());
+        }
+        else
+        {
+            Debug.Log("Nothing happened");
+        }
+    }
+
+    IEnumerator DisplayPresentCollectedMessage()
+    {
+        presentCollectedMessage.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Debug.Log("Set back to false now");
+        presentCollectedMessage.SetActive(false);
     }
 }
