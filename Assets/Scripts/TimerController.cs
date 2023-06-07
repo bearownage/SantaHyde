@@ -7,27 +7,32 @@ using UnityEngine.SceneManagement;
 public class TimerController : MonoBehaviour
 {
 
-    public float timeValue = 90;
+    public float timeValue = 30;
     public TextMeshProUGUI timeText;
     // Start is called before the first frame update
     void Start()
     {
-
+        timeText.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeValue > 0)
+        if ( SwitchController.userActivatedSwitch )
         {
-            timeValue -= Time.deltaTime;
-        }
-        else
-        {
-            SceneManager.LoadScene("Scenes/GameOverScene");
-        }
+            timeText.enabled = true;
+            if (timeValue > 0)
+            {
+                timeValue -= Time.deltaTime;
+            }
+            else
+            {
+                SceneManager.LoadScene("Scenes/BasedGameOverScene");
+            }
 
-        DisplayTime(timeValue);
+            DisplayTime(timeValue);
+        }
+        
     }
 
     void DisplayTime(float timeToDisplay)
@@ -40,7 +45,7 @@ public class TimerController : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = string.Format("Time remaining\n{0:00}:{1:00}", minutes, seconds);
 
         if ( timeToDisplay < 10 )
         {
