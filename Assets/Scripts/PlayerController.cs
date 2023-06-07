@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         // Rotates the car based on horizontal input
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
 
-        if (timePassedSinceGameStart > 5 && !closeToPresentMessageDisplayed)
+        if (timePassedSinceGameStart > 15 && !closeToPresentMessageDisplayed)
         {
             StartCoroutine(DisplayCloseToPresentMessage());
             closeToPresentMessageDisplayed = true;
