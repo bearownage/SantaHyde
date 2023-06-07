@@ -9,13 +9,18 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        RenderSettings.ambientLight = Color.black;
+        Light[] ligths = FindObjectsOfType(typeof(Light)) as Light[];
+        foreach (Light ligth in ligths)
+        {
+            ligth.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+        //transform.position = player.transform.position + offset;
     }
 }
 
