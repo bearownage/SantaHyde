@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     private float forwardInput;
 
     public GameObject presentCollectedMessage;
+    
+    public GameObject closeToPresentMessage;
+    public GameObject orAreYouMessage;
+    private bool closeToPresentMessageDisplayed;
+    private float timePassedSinceGameStart;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +25,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timePassedSinceGameStart += Time.deltaTime;
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
@@ -27,6 +33,12 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
         // Rotates the car based on horizontal input
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+
+        if (timePassedSinceGameStart > 5 && !closeToPresentMessageDisplayed)
+        {
+            StartCoroutine(DisplayCloseToPresentMessage());
+            closeToPresentMessageDisplayed = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -47,5 +59,17 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         Debug.Log("Set back to false now");
         presentCollectedMessage.SetActive(false);
+    }
+    
+
+    IEnumerator DisplayCloseToPresentMessage()
+    {
+        closeToPresentMessage.SetActive(true);
+        yield return new WaitForSeconds(2);
+        closeToPresentMessage.SetActive(false);
+        yield return new WaitForSeconds(2);
+        orAreYouMessage.SetActive(true);
+        yield return new WaitForSeconds(1);
+        orAreYouMessage.SetActive(false);
     }
 }
