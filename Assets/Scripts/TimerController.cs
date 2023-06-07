@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimerController : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class TimerController : MonoBehaviour
         }
         else
         {
-            timeValue = 0;
+            SceneManager.LoadScene("Scenes/GameOverScene");
         }
 
         DisplayTime(timeValue);
