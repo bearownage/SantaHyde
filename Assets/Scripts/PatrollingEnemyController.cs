@@ -32,9 +32,15 @@ public class PatrollingEnemyController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger!");
+    }
+
     void OnTriggerStay(Collider other)
     {
-        if ( other.gameObject.name == "Player")
+        Debug.Log("Enemy triggered by something!");
+        if ( other.gameObject.CompareTag("Player"))
         {
             spotted = true;
         }
@@ -42,7 +48,7 @@ public class PatrollingEnemyController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if ( other.gameObject.name == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(search());
         }
