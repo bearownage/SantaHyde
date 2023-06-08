@@ -12,6 +12,7 @@ public class Day_GameUIManager : MonoBehaviour
     //public int totalCharges = 3;
     private float remainingTime = 60f;
     public GameObject panel;
+    public GameObject spotted;
     public GameObject timeUp;
     public GameObject retry;
 
@@ -22,11 +23,16 @@ public class Day_GameUIManager : MonoBehaviour
     {
         timeUp.SetActive(false);
         retry.SetActive(false);
-        
+        spotted.SetActive(false);
     }
 
     private void Update()
     {
+        if (House1_Player.isSpotted)
+        {
+            spotted.SetActive(true);
+            retry.SetActive(true);
+        }
         
 
         if(remainingTime != 0)
@@ -39,7 +45,7 @@ public class Day_GameUIManager : MonoBehaviour
             //chargesText.text = totalCharges.ToString();
             timeText.text = Mathf.Round(remainingTime).ToString();
         }
-        else if (remainingTime == 0 && giftPlacementScript.giftPlaced) // If time is up and the gift has been placed
+        else if (remainingTime == 0 && giftPlacementScript.giftPlaced && House1_Player.isSpotted == false) // If time is up and the gift has been placed
         {
             // Load the next scene
             SceneManager.LoadScene("House 1 Night");

@@ -16,6 +16,8 @@ public class House1_Player : MonoBehaviour
     public TextMeshProUGUI spottedText;
     public GameObject screen;
 
+    public static bool isSpotted = false;
+
     // UI stuff for night
     public GameObject presentCollectedMessage;
     public GameObject closeToPresentMessage;
@@ -33,11 +35,6 @@ public class House1_Player : MonoBehaviour
             spottedText.enabled = false;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
 
     // Update is called once per frame
     void Update()
@@ -72,8 +69,10 @@ public class House1_Player : MonoBehaviour
     {
         if (collision.gameObject.name == "Enemy")
         {
-            Debug.Log("Collided with enemy");
-            StartCoroutine(spottedThenEndGame());
+            // Game manager will pop retry text;
+            isSpotted = true;
+            // Debug.Log("Collided with enemy");
+            // StartCoroutine(spottedThenEndGame());
         }
         if (isNight)
         {
@@ -84,7 +83,7 @@ public class House1_Player : MonoBehaviour
         }
     }
 
-    IEnumerator spottedThenEndGame()
+/*    IEnumerator spottedThenEndGame()
     {
         Debug.Log("Player spotted, end the game");
         if (isNight)
@@ -92,17 +91,10 @@ public class House1_Player : MonoBehaviour
             spottedText.enabled = true;
             screen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
             yield return new WaitForSeconds(2);
-            SceneManager.LoadScene("Adam/Scenes/BasedGameOverScene");
         }
-        // Check for 'E' key press
-        if (Input.GetKeyDown(KeyCode.E) && isNearPostbox)
-        {
-            // Switch to 'House 1' scene
-            SceneManager.LoadScene("House 1");
-        }
-        
-        
-    }
+
+        SceneManager.LoadScene("Adam/Scenes/BasedGameOverScene");
+    }*/
 
     // This function is called when this object collides with another object
     void OnTriggerEnter(Collider other)
