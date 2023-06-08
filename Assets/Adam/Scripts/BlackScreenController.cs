@@ -10,7 +10,7 @@ public class BlackScreenController : MonoBehaviour
     public TextMeshProUGUI instructionText;
     public TextMeshProUGUI chargesText;
 
-    private int numberOfCharges = 2;
+    private int numberOfCharges = 100;
     //public Image blackScreen;
     // Start is called before the first frame update
     void Start()

@@ -28,9 +28,10 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (!userActivatedSwitch)
         {
-            if (other.gameObject.name == "PlayerCube")
+            if (other.gameObject.name == "Player")
             {
                 wantToActivateSwitchText.enabled = true;
                 if (Input.GetKeyDown("e"))
