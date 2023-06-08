@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/House 1 Day.unity
     guid: e43bfb25c298f194fa37fa15abbb5644
+  - enabled: 1
+    path: Assets/Scenes/House 1 Night.unity
+    guid: a2b8037925b5bb640a8bf033dd20f8b9
+  - enabled: 1
+    path: Assets/Adam/Scenes/BasedGameOverScene.unity
+    guid: 424768d5faafd764c8336a3502bf1010
   m_configObjects: {}

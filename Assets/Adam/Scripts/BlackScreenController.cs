@@ -6,7 +6,7 @@ using TMPro;
 
 public class BlackScreenController : MonoBehaviour
 {
-    public GameObject panel;
+    public GameObject screen;
     public TextMeshProUGUI instructionText;
     public TextMeshProUGUI chargesText;
 
@@ -30,13 +30,13 @@ public class BlackScreenController : MonoBehaviour
         if (Input.GetKeyDown("b") && numberOfCharges > 0)
         {
             Debug.Log("User pressed b");
-            panel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            screen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
             instructionText.enabled = false;
             chargesText.enabled = false;
             yield return new WaitForSeconds(1);
             Debug.Log("Revert Screen");
             chargesText.enabled = true;
-            panel.GetComponent<Image>().color = new Color(0, 0, 0, 255);
+            screen.GetComponent<Image>().color = new Color(0, 0, 0, 255);
             numberOfCharges--;
             if ( numberOfCharges > 0 )
             {
