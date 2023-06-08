@@ -6,6 +6,7 @@ using UnityEngine.UI;
 //for scene change
 using UnityEngine.SceneManagement;
 
+
 public class House1_Player : MonoBehaviour
 {
     private float speed = 6.0f;
@@ -36,13 +37,18 @@ public class House1_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timePassedSinceGameStart += Time.deltaTime;
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+    
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+    // Update is called once per frame
+    void Update()
+    {   
+            timePassedSinceGameStart += Time.deltaTime;
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
 
-        transform.position += movement * speed * Time.deltaTime;
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+            transform.position += movement * speed * Time.deltaTime;
 
          // Check for 'E' key press
         if (Input.GetKeyDown(KeyCode.E) && isNearPostbox)
@@ -86,8 +92,16 @@ public class House1_Player : MonoBehaviour
             spottedText.enabled = true;
             screen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
             yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("Adam/Scenes/BasedGameOverScene");
         }
-        SceneManager.LoadScene("Adam/Scenes/BasedGameOverScene");
+        // Check for 'E' key press
+        if (Input.GetKeyDown(KeyCode.E) && isNearPostbox)
+        {
+            // Switch to 'House 1' scene
+            SceneManager.LoadScene("House 1");
+        }
+        
+        
     }
 
     // This function is called when this object collides with another object

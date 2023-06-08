@@ -12,6 +12,12 @@ public class World_Player : MonoBehaviour
     public GameObject imageObject; // The GameObject of the Image
     
 
+
+    void Start()
+    {
+        imageObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
