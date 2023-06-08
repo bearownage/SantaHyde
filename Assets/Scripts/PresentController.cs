@@ -25,7 +25,7 @@ public class PresentController : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             Debug.Log("Present collected by player");
-            PresentsCollected++;
+            PresentsCollected = 1;
             gameObject.SetActive(false);
         }
         else
