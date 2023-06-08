@@ -27,7 +27,10 @@ public class House1_Player : MonoBehaviour
 
     private void Start()
     {
-        spottedText.enabled = false;
+        if (isNight)
+        {
+            spottedText.enabled = false;
+        }
     }
 
     // Update is called once per frame
