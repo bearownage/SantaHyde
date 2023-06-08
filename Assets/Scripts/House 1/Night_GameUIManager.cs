@@ -56,6 +56,7 @@ public class Night_GameUIManager : MonoBehaviour
 
             if (hasDecidedToActiveSwitch)
             {
+                timeText.enabled = true;
                 remainingTime -= Time.deltaTime;
 
                 if (remainingTime < 0)
@@ -108,7 +109,6 @@ public class Night_GameUIManager : MonoBehaviour
             yield return new WaitForSeconds(seconds);
             Debug.Log("Revert Screen to Dark");
             panel.GetComponent<Image>().color = new Color(0, 0, 0, 255);
-            
         }
     }
 

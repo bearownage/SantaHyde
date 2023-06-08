@@ -1402,7 +1402,7 @@ MonoBehaviour:
   chargesText: {fileID: 1008441073}
   timeText: {fileID: 1001753368}
   totalCharges: 3
-  remainingTime: 60
+  remainingTime: 30
   panel: {fileID: 2043376209}
   timeUp: {fileID: 1962305336}
   retry: {fileID: 1758214735}
