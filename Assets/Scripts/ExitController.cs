@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class ExitController : MonoBehaviour
 {
     public GameObject warningMessage;
+    public Night_GameUIManager night_GameUIManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class ExitController : MonoBehaviour
         if ( collision.gameObject.name == "Player" )
         {
             Debug.Log("Presents collected as shown in Exit Controller: " + PresentController.PresentsCollected);
-            if (PresentController.PresentsCollected == 1)
+            if (PresentController.PresentsCollected == 1 && night_GameUIManager.remainingTime != 0)
             {
                 SceneManager.LoadScene("Adam/Scenes/WinScene");
             } 

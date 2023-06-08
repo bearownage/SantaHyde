@@ -10,7 +10,7 @@ public class Night_GameUIManager : MonoBehaviour
     public TextMeshProUGUI chargesText; // Update this line
     public TextMeshProUGUI timeText; // And this line
     public int totalCharges = 3;
-    private float remainingTime = 60f;
+    public float remainingTime = 30f;
     public GameObject panel;
     public GameObject timeUp;
     public GameObject retry;
@@ -20,8 +20,14 @@ public class Night_GameUIManager : MonoBehaviour
     public GameObject presentCollectedText;
     private bool presentTextHasBeenDisplayed = false;
 
+    public SwitchController switchController;
+
+    private bool hasDecidedToActiveSwitch;
+
     public void Start()
     {
+        timeText.enabled = false;
+
         timeUp.SetActive(false);
         retry.SetActive(false);
         spotted.SetActive(false);
@@ -45,15 +51,18 @@ public class Night_GameUIManager : MonoBehaviour
 
         if (remainingTime != 0)
         {
-            
             StartCoroutine(LightUpScreen());
-            remainingTime -= Time.deltaTime;
-        
-            if (remainingTime < 0)
-                remainingTime = 0;
-
             chargesText.text = totalCharges.ToString();
-            timeText.text = Mathf.Round(remainingTime).ToString();
+
+            if (hasDecidedToActiveSwitch)
+            {
+                remainingTime -= Time.deltaTime;
+
+                if (remainingTime < 0)
+                    remainingTime = 0;
+
+                timeText.text = Mathf.Round(remainingTime).ToString();
+            }
         }
         else 
         {
@@ -64,17 +73,42 @@ public class Night_GameUIManager : MonoBehaviour
 
     IEnumerator LightUpScreen()
     {
-        if (Input.GetKeyDown("e") && totalCharges > 0)
+        // Determine how long to light up the screen for
+        float seconds;
+        if (switchController.wantToActivateSwitchText.activeSelf)
         {
+            seconds = 5;
+        } 
+        else
+        {
+            seconds = 1;
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            if (seconds == 5 && hasDecidedToActiveSwitch)
+            {
+                // User has already activated switch, ignore
+                yield return new WaitForSeconds(0);
+            } else if (seconds == 1 && totalCharges <= 0) {
+                // User has used up all charges, ignore
+                yield return new WaitForSeconds(0);
+            }
+
+            // Account for use;
+            if ( seconds == 5 )
+            {
+                hasDecidedToActiveSwitch = true;
+            } else
+            {
+                totalCharges--;
+            }
+
             Debug.Log("User pressed E to use a charge, charges left : "+totalCharges);
             panel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-            //instructionText.enabled = false;
-            //chargesText.enabled = false;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(seconds);
             Debug.Log("Revert Screen to Dark");
-            //chargesText.enabled = true;
             panel.GetComponent<Image>().color = new Color(0, 0, 0, 255);
-            totalCharges--;
+            
         }
     }
 

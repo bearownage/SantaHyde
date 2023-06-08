@@ -10,31 +10,29 @@ public class SwitchController : MonoBehaviour
     public static bool userActivatedSwitch = false;
     public GameObject screen;
 
-    public TextMeshProUGUI wantToActivateSwitchText;
-    public TextMeshProUGUI instructionText;
-    public TextMeshProUGUI chargesText;
+    public GameObject wantToActivateSwitchText;
 
     // Start is called before the first frame update
     void Start()
     {
-        wantToActivateSwitchText.enabled = false;
+        wantToActivateSwitchText.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if (!userActivatedSwitch)
         {
             if (other.gameObject.name == "Player")
             {
-                wantToActivateSwitchText.enabled = true;
-                if (Input.GetKeyDown("e"))
+                wantToActivateSwitchText.SetActive(true);
+                /*if (Input.GetKeyDown("e"))
                 {
                     Debug.Log("User pressed e");
                     userActivatedSwitch = true;
@@ -44,17 +42,17 @@ public class SwitchController : MonoBehaviour
                 else
                 {
                     // Ignore
-                }
+                }*/
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        wantToActivateSwitchText.enabled = false;
+        wantToActivateSwitchText.SetActive(false);
     }
 
-    IEnumerator LightUpScreen()
+    /*IEnumerator LightUpScreen()
     {
             screen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
             instructionText.enabled = false;
@@ -65,5 +63,5 @@ public class SwitchController : MonoBehaviour
             chargesText.enabled = true;
             screen.GetComponent<Image>().color = new Color(0, 0, 0, 255);
         }
-    }
-
+    }*/
+}
