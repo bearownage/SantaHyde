@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class ButtonController : MonoBehaviour
+public class GameOverButtonController : MonoBehaviour
 {
-
     public Button button;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +24,6 @@ public class ButtonController : MonoBehaviour
     public void OnClick()
     {
         SwitchController.userActivatedSwitch = false;
-        SceneManager.LoadScene("Scenes/Adam's Scene");
+        SceneManager.LoadScene("Scenes/House 1 Night");
     }
 }

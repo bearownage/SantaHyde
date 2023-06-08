@@ -22,18 +22,16 @@ public class ExitController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
         Debug.Log("Exit collission!");
         if ( collision.gameObject.name == "Player" )
         {
-            GameObject present = GameObject.Find("Present");
-            PresentController presentController = present.GetComponent<PresentController>();
             Debug.Log("Presents collected as shown in Exit Controller: " + PresentController.PresentsCollected);
-
             if (PresentController.PresentsCollected == 1)
             {
-                SceneManager.LoadScene("Scenes/WinScene");
-                //_Win
-            } else
+                SceneManager.LoadScene("Adam/Scenes/WinScene");
+            } 
+            else
             {
                 warningMessage.SetActive(true);
             }

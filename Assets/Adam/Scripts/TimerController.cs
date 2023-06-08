@@ -27,7 +27,7 @@ public class TimerController : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Scenes/BasedGameOverScene");
+                SceneManager.LoadScene("Adam/Scenes/BasedGameOverScene");
             }
 
             DisplayTime(timeValue);

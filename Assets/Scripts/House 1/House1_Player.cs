@@ -14,6 +14,15 @@ public class House1_Player : MonoBehaviour
     public GameObject imageObject; // The GameObject of the Image
     public TextMeshProUGUI spottedText;
     public GameObject screen;
+
+    // UI stuff for night
+    public GameObject presentCollectedMessage;
+    public GameObject closeToPresentMessage;
+    public GameObject orAreYouMessage;
+
+    public bool isNight;
+    private float timePassedSinceGameStart;
+    private bool closeToPresentMessageDisplayed;
     //public GameObject EnterPopUp;
 
     private void Start()
@@ -24,6 +33,7 @@ public class House1_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timePassedSinceGameStart += Time.deltaTime;
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -37,6 +47,15 @@ public class House1_Player : MonoBehaviour
             // Switch to 'House 1' scene
             SceneManager.LoadScene("House 1");
         }
+
+        if (isNight)
+        {
+            if (timePassedSinceGameStart > 15 && !closeToPresentMessageDisplayed)
+            {
+                StartCoroutine(DisplayCloseToPresentMessage());
+                closeToPresentMessageDisplayed = true;
+            }
+        }
     }
 
     //
@@ -46,6 +65,13 @@ public class House1_Player : MonoBehaviour
         {
             Debug.Log("Collided with enemy");
             StartCoroutine(spottedThenEndGame());
+        }
+        if (isNight)
+        {
+            if (collision.gameObject.name == "Gift")
+            {
+                StartCoroutine(DisplayPresentCollectedMessage());
+            }
         }
     }
 
@@ -93,5 +119,25 @@ public class House1_Player : MonoBehaviour
             imageObject.SetActive(false);
             isNearPostbox = false;
         }
+    }
+
+    IEnumerator DisplayPresentCollectedMessage()
+    {
+        presentCollectedMessage.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Debug.Log("Set back to false now");
+        presentCollectedMessage.SetActive(false);
+    }
+
+
+    IEnumerator DisplayCloseToPresentMessage()
+    {
+        closeToPresentMessage.SetActive(true);
+        yield return new WaitForSeconds(2);
+        closeToPresentMessage.SetActive(false);
+        yield return new WaitForSeconds(2);
+        orAreYouMessage.SetActive(true);
+        yield return new WaitForSeconds(1);
+        orAreYouMessage.SetActive(false);
     }
 }

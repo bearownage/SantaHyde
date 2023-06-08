@@ -33,19 +33,4 @@ public class PresentController : MonoBehaviour
             Debug.Log("Nothing happened");
         }
     }
-
-    /*
-    void OnTriggerEnter(Collider collision)
-    {
-        Debug.Log("Collision Happening");
-        if (collision.gameObject.name == "Player")
-        {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("Nothing happened");
-        }
-    }
-    */
 }
