@@ -56,8 +56,5 @@ public class Day_GameUIManager : MonoBehaviour
             retry.SetActive(true);
             
         }
-        
     }
-
-    
 }

@@ -29,11 +29,8 @@ public class House1_Player : MonoBehaviour
     //public GameObject EnterPopUp;
 
     private void Start()
-    {
-        if (isNight)
-        {
-            spottedText.enabled = false;
-        }
+    { 
+
     }
 
     // Update is called once per frame
@@ -47,20 +44,11 @@ public class House1_Player : MonoBehaviour
 
             transform.position += movement * speed * Time.deltaTime;
 
-         // Check for 'E' key press
+        // Check for 'E' key press
         if (Input.GetKeyDown(KeyCode.E) && isNearPostbox)
         {
             // Switch to 'House 1' scene
             SceneManager.LoadScene("House 1");
-        }
-
-        if (isNight)
-        {
-            if (timePassedSinceGameStart > 15 && !closeToPresentMessageDisplayed)
-            {
-                StartCoroutine(DisplayCloseToPresentMessage());
-                closeToPresentMessageDisplayed = true;
-            }
         }
     }
 
@@ -73,13 +61,6 @@ public class House1_Player : MonoBehaviour
             isSpotted = true;
             // Debug.Log("Collided with enemy");
             // StartCoroutine(spottedThenEndGame());
-        }
-        if (isNight)
-        {
-            if (collision.gameObject.name == "Gift")
-            {
-                StartCoroutine(DisplayPresentCollectedMessage());
-            }
         }
     }
 

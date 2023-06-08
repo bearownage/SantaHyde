@@ -5,7 +5,7 @@ using UnityEngine;
 public class GiftPlacement : MonoBehaviour
 {
     public GameObject gift; // Assign the 'Gift' GameObject in the Inspector
-    public bool giftPlaced { get; private set; } // Make it a property with a public getter and a private setter
+    public bool giftPlaced; // Make it a property with a public getter and a private setter
 
     private void Start()
     {

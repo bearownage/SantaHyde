@@ -27,6 +27,7 @@ public class Night_GameUIManager : MonoBehaviour
     public void Start()
     {
         timeText.enabled = false;
+        House1_Player.isNight = true;
 
         timeUp.SetActive(false);
         retry.SetActive(false);
