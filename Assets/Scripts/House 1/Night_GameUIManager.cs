@@ -27,7 +27,7 @@ public class Night_GameUIManager : MonoBehaviour
     public void Start()
     {
         timeText.enabled = false;
-        presentCollectedText.SetActive(false);
+
         timeUp.SetActive(false);
         retry.SetActive(false);
         spotted.SetActive(false);
@@ -89,21 +89,20 @@ public class Night_GameUIManager : MonoBehaviour
             if (seconds == 5 && hasDecidedToActiveSwitch)
             {
                 // User has already activated switch, ignore
-                yield return new WaitForSeconds(0);
+                yield break;
             } else if (seconds == 1 && totalCharges <= 0) {
                 // User has used up all charges, ignore
-                yield return new WaitForSeconds(0);
+                yield break;
+
             }
 
             // Account for use;
-            if ( seconds == 5)
+            if ( seconds == 5 )
             {
                 hasDecidedToActiveSwitch = true;
             } else
             {
                 totalCharges--;
-                //try fixing the issue
-                if(totalCharges<=0) totalCharges =0;
             }
 
             Debug.Log("User pressed E to use a charge, charges left : "+totalCharges);
@@ -122,71 +121,3 @@ public class Night_GameUIManager : MonoBehaviour
         presentTextHasBeenDisplayed = true;
     }
 }
-
-
-
-
-
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-using TMPro; // Add this line
-
-public class Night_GameUIManager : MonoBehaviour
-{
-    public TextMeshProUGUI chargesText; // Update this line
-    public TextMeshProUGUI timeText; // And this line
-    public int totalCharges = 3;
-    private float remainingTime = 60f;
-    public GameObject panel;
-    public GameObject timeUp;
-    public GameObject retry;
-
-    public void Start()
-    {
-        timeUp.SetActive(false);
-        retry.SetActive(false);
-    }
-
-    private void Update()
-    {
-        
-
-        if(remainingTime != 0)
-        {
-            
-            StartCoroutine(LightUpScreen());
-            remainingTime -= Time.deltaTime;
-        
-            if (remainingTime < 0)
-                remainingTime = 0;
-
-            chargesText.text = totalCharges.ToString();
-            timeText.text = Mathf.Round(remainingTime).ToString();
-        }
-        else 
-        {
-            timeUp.SetActive(true);
-            retry.SetActive(true);
-        }
-    }
-
-    IEnumerator LightUpScreen()
-    {
-        if (Input.GetKeyDown("e") && totalCharges > 0)
-        {
-            Debug.Log("User pressed E to use a charge, charges left : "+totalCharges);
-            panel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-            //instructionText.enabled = false;
-            //chargesText.enabled = false;
-            yield return new WaitForSeconds(1);
-            Debug.Log("Revert Screen to Dark");
-            //chargesText.enabled = true;
-            panel.GetComponent<Image>().color = new Color(0, 0, 0, 255);
-            totalCharges--;
-        }
-    }
-}
-*/
