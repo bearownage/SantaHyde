@@ -20,7 +20,7 @@ public class House1_Player : MonoBehaviour
     public GameObject closeToPresentMessage;
     public GameObject orAreYouMessage;
 
-    public bool isNight;
+    public static bool isNight;
     private float timePassedSinceGameStart;
     private bool closeToPresentMessageDisplayed;
     //public GameObject EnterPopUp;
@@ -78,9 +78,12 @@ public class House1_Player : MonoBehaviour
     IEnumerator spottedThenEndGame()
     {
         Debug.Log("Player spotted, end the game");
-        spottedText.enabled = true;
-        screen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(2);
+        if (isNight)
+        {
+            spottedText.enabled = true;
+            screen.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            yield return new WaitForSeconds(2);
+        }
         SceneManager.LoadScene("Adam/Scenes/BasedGameOverScene");
     }
 

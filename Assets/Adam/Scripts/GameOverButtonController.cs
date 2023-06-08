@@ -23,7 +23,15 @@ public class GameOverButtonController : MonoBehaviour
     // Reload level
     public void OnClick()
     {
-        SwitchController.userActivatedSwitch = false;
-        SceneManager.LoadScene("Scenes/House 1 Night");
+        if (House1_Player.isNight)
+        {
+            SwitchController.userActivatedSwitch = false;
+            SceneManager.LoadScene("Scenes/House 1 Night");
+        } 
+        else
+        {
+            SceneManager.LoadScene("Scenes/House 1 Day");
+        }
+
     }
 }
