@@ -4,6 +4,7 @@ using UnityEngine;
 //for scene change
 using UnityEngine.SceneManagement;
 
+
 public class House1_Player : MonoBehaviour
 {
     private float speed = 6.0f;
@@ -12,22 +13,26 @@ public class House1_Player : MonoBehaviour
     public GameObject imageObject; // The GameObject of the Image
     //public GameObject EnterPopUp;
 
+    
+
     // Update is called once per frame
     void Update()
-    {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+    {   
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-        transform.position += movement * speed * Time.deltaTime;
+            transform.position += movement * speed * Time.deltaTime;
 
-         // Check for 'E' key press
-        if (Input.GetKeyDown(KeyCode.E) && isNearPostbox)
-        {
-            // Switch to 'House 1' scene
-            SceneManager.LoadScene("House 1");
-        }
+            // Check for 'E' key press
+            if (Input.GetKeyDown(KeyCode.E) && isNearPostbox)
+            {
+                // Switch to 'House 1' scene
+                SceneManager.LoadScene("House 1");
+            }
+        
+        
     }
 
     // This function is called when this object collides with another object
