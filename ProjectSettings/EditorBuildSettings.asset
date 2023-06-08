@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/World.unity
     guid: 90a3f7f9f75d30b4a91f3f5d395fc41d
   - enabled: 1
-    path: Assets/Scenes/House 1.unity
+    path: Assets/Scenes/House 1 Complex.unity
     guid: 8089f03ce959c1c4cab5b83bec40403f
+  - enabled: 1
+    path: Assets/Scenes/House 1 Day.unity
+    guid: e43bfb25c298f194fa37fa15abbb5644
   m_configObjects: {}
