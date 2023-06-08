@@ -22,9 +22,9 @@ public class PresentController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("On Collision Enter: Collision Happening");
         if (collision.gameObject.name == "Player")
         {
+            Debug.Log("Present collected by player");
             PresentsCollected++;
             gameObject.SetActive(false);
         }

@@ -14,18 +14,36 @@ public class Night_GameUIManager : MonoBehaviour
     public GameObject panel;
     public GameObject timeUp;
     public GameObject retry;
+    public GameObject spotted;
+
+    public GameObject present;
+    public GameObject presentCollectedText;
+    private bool presentTextHasBeenDisplayed = false;
 
     public void Start()
     {
         timeUp.SetActive(false);
         retry.SetActive(false);
+        spotted.SetActive(false);
+        presentCollectedText.SetActive(false);
     }
 
     private void Update()
     {
-        
+        // If player is spotted
+        if (House1_Player.isSpotted)
+        {
+            spotted.SetActive(true);
+            retry.SetActive(true);
+        }
 
-        if(remainingTime != 0)
+        //If player collects the present
+        if ( PresentController.PresentsCollected == 1 && presentTextHasBeenDisplayed != true)
+        {
+            StartCoroutine(DisplayPresentCollectedText());
+        }
+
+        if (remainingTime != 0)
         {
             
             StartCoroutine(LightUpScreen());
@@ -58,5 +76,13 @@ public class Night_GameUIManager : MonoBehaviour
             panel.GetComponent<Image>().color = new Color(0, 0, 0, 255);
             totalCharges--;
         }
+    }
+
+    IEnumerator DisplayPresentCollectedText()
+    {
+        presentCollectedText.SetActive(true);
+        yield return new WaitForSeconds(1);
+        presentCollectedText.SetActive(false);
+        presentTextHasBeenDisplayed = true;
     }
 }

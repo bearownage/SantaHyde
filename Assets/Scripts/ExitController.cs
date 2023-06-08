@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class ExitController : MonoBehaviour
 {
     public GameObject warningMessage;
-    [SerializeField] private List<Scene> _sceneList;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +42,8 @@ public class ExitController : MonoBehaviour
         warningMessage.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Exit Trigger!");
+        Debug.Log("Trigger!?!?!");
     }
 }
