@@ -28,11 +28,11 @@ public class ExitController : MonoBehaviour
         if ( collision.gameObject.name == "Player" )
         {
             Debug.Log("Presents collected as shown in Exit Controller: " + PresentController.PresentsCollected);
-            if (PresentController.PresentsCollected == 1 && night_GameUIManager.remainingTime != 0)
+            if (PresentController.PresentsCollected == 1 && night_GameUIManager.remainingTime != 0 && House1_Player.isSpotted == false)
             {
                 SceneManager.LoadScene("Lvl 1 Complete");
             } 
-            else
+            else if (PresentController.PresentsCollected == 0)
             {
                 warningMessage.SetActive(true);
             }

@@ -10,6 +10,7 @@ public class RetryButton : MonoBehaviour
     {
         // Reloads the current scene
         House1_Player.isSpotted = false;
+        PresentController.PresentsCollected = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
